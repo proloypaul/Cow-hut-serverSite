@@ -44,8 +44,21 @@ const getSingleUserToDB = async(id:string):Promise<Iuser | null> => {
     return result 
 }
 
+const updateUserToDB = async(id:string, updatedData:Partial<Iuser>):Promise<Iuser | null> => {
+    const result = await User.findOneAndUpdate({_id: id}, updatedData, {new: true});
+
+    return result 
+}
+
+const deleteUserToDB = async(id:string):Promise<Iuser | null> => {
+    const result = await User.findByIdAndDelete(id);
+
+    return result 
+}
 export const UserServices = {
     createUserToDB,
     getAllUserToDB,
-    getSingleUserToDB
+    getSingleUserToDB,
+    updateUserToDB,
+    deleteUserToDB
 }
