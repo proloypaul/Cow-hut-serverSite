@@ -4,6 +4,8 @@ import { UserServices } from "./user.service";
 import sendResponse from "../../shared/sendResponse";
 import { Iuser } from "./user.interface";
 import { StatusCodes } from "http-status-codes";
+import pickFields from "../../shared/pickFields";
+import { paginationFields } from "../../../constaint/paginationConstaint";
 
 
 const createUser = catchAsync(
@@ -11,7 +13,7 @@ const createUser = catchAsync(
         const {...userData} = req.body;
         // console.log("controller data", req.body)
         const result = await UserServices.createUserToDB(userData)
-        sendResponse(res, {
+        sendResponse<Iuser>(res, {
           statusCode: StatusCodes.OK,
           success: true,
           message: 'User data created successfully',
@@ -21,6 +23,22 @@ const createUser = catchAsync(
       }
 )
 
+const getAllUser = catchAsync(
+    async (req: Request, res: Response) => {
+        const paginationOptions = pickFields(req.query, paginationFields);
+        const result = await UserServices.getAllUserToDB(paginationOptions);
+
+        sendResponse<Iuser[]>(res, {
+            statusCode: StatusCodes.OK,
+            success: true,
+            message: 'Get user all data successfully',
+            meta: result.meta,
+            data: result.data,
+        });
+    }
+)
+
 export const  UserControllers = {
     createUser,
+    getAllUser
 }
