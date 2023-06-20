@@ -6,7 +6,7 @@ const userSchema = new Schema<Iuser>(
     {
         phoneNumber: {type: Number, required: true},
         role: {type: String, required: true, enum: ['seller', 'buyer']  },
-        password: {type: Number, required: true},
+        password: {type: String, required: true},
         name: {
             firstName: {type: String, required:true},
             lastName: {type: String, required:true}

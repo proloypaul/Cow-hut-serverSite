@@ -13,6 +13,7 @@ async function main() {
     app.listen(config.port, () => {
       console.log(`University management server running port:  ${config.port}`);
     });
+
   } catch (err) {
     console.log('Failed to connect database ', err);
   }
