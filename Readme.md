@@ -23,9 +23,9 @@
 
 - api/v1/cow/get-allCow?page=1&limit=10
 - api/v1/cow/get-allCow?sortBy=price&sortOrder=asc
-- api/v1/cow/get-allCow?minPrice=2000&maxPrice=70000
 - api/v1/cow/get-allCow?minPrice=40000
 - api/v1/cow/get-allCow?maxPrice=70000
+- api/v1/cow/get-allCow?minPrice=2000&maxPrice=70000
 - api/v1/cow/get-allCow?location=Chattogram
 - api/v1/cow/get-allCow?category=Beef
 - api/v1/cow/get-allCow?breed=Sahiwal
