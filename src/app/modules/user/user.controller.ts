@@ -67,12 +67,10 @@ const updateUser = catchAsync(
     }
 )
 
-const deleteUser = catchAsync(
+const deleteUserData = catchAsync(
     async (req: Request, res: Response) => {
         const id = req.params.id;
-        console.log("controller id ", id)
         const result = await UserServices.deleteUserToDB(id);
-
         sendResponse<Iuser>(res, {
             statusCode: StatusCodes.OK,
             success: true,
@@ -87,5 +85,5 @@ export const  UserControllers = {
     getAllUser,
     getSingleUser,
     updateUser,
-    deleteUser
+    deleteUserData
 }

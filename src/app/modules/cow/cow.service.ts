@@ -62,7 +62,7 @@ const getAllCowToDb = async(paginationOptions:Partial<IpaginationOptions>, allFi
 
     const totalQueryOfCowData =
     filterAndSearchCondition.length > 0 ? { $and: filterAndSearchCondition } : {};
-    const result = await Cow.find(totalQueryOfCowData)
+    const result = await Cow.find(totalQueryOfCowData).populate("seller")
         .sort(sortCondition)
         .skip(skip)
         .limit(limit);

@@ -39,8 +39,7 @@ const getAllUserToDB = async(paginationOptions:IpaginationOptions):Promise<IGene
 }
 
 const getSingleUserToDB = async(id:string):Promise<Iuser | null> => {
-  
-  console.log("service id ", id)
+
     const result = await User.findById(id);
 
     return result 

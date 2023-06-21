@@ -6,6 +6,7 @@ import { StatusCodes } from "http-status-codes";
 import { CowServices } from "./cow.service";
 import pickFields from "../../shared/pickFields";
 import { paginationFields } from "../../../constaint/paginationConstaint";
+import { filtersFieldOptions } from "./cow.constraint";
 
 const createCow = catchAsync(
     async(req: Request, res: Response) => {
@@ -24,7 +25,7 @@ const createCow = catchAsync(
 const getAllCow = catchAsync(
     async(req: Request, res: Response) => {
         const paginationOptions = pickFields(req.query, paginationFields);
-        const filtersOptions = pickFields(req.query, ["searchTerm", "minPrice", "maxPrice", "location", "breed", "category"]);
+        const filtersOptions = pickFields(req.query, filtersFieldOptions);
         const result = await CowServices.getAllCowToDb(paginationOptions, filtersOptions);
 
         sendResponse<Icow[]>(res, {
