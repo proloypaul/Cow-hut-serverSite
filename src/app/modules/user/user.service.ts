@@ -39,6 +39,8 @@ const getAllUserToDB = async(paginationOptions:IpaginationOptions):Promise<IGene
 }
 
 const getSingleUserToDB = async(id:string):Promise<Iuser | null> => {
+  
+  console.log("service id ", id)
     const result = await User.findById(id);
 
     return result 
@@ -52,7 +54,6 @@ const updateUserToDB = async(id:string, updatedData:Partial<Iuser>):Promise<Iuse
 
 const deleteUserToDB = async(id:string):Promise<Iuser | null> => {
     const result = await User.findByIdAndDelete(id);
-
     return result 
 }
 export const UserServices = {

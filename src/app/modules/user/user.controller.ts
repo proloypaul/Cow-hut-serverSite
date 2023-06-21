@@ -70,6 +70,7 @@ const updateUser = catchAsync(
 const deleteUser = catchAsync(
     async (req: Request, res: Response) => {
         const id = req.params.id;
+        console.log("controller id ", id)
         const result = await UserServices.deleteUserToDB(id);
 
         sendResponse<Iuser>(res, {
