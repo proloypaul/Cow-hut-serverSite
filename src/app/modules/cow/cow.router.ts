@@ -9,5 +9,6 @@ router.post('/create-cow', validateRequest(cowValidataion.createCowZodSchema), C
 router.get('/getSingle-cow/:id', CowControllers.getSingleCow);
 router.patch('/update-cow/:id', validateRequest(cowValidataion.updateCowZodSchema), CowControllers.updateCow)
 router.delete('/delete-cow/:id', CowControllers.deleteCow);
+router.get("/get-allCow", CowControllers.getAllCow);
 
 export const cowRouters = router;

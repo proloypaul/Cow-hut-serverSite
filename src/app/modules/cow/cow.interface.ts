@@ -25,3 +25,9 @@ export type cowModel = Model<
   Icow,
   Record<string, unknown>
 >;
+
+export type IfilterOptions = {
+    searchTerm: string,
+    minPrice: string,
+    maxPrice: string,
+}

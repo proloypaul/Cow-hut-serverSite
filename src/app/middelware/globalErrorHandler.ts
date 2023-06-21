@@ -10,9 +10,6 @@ import handleCasrError from '../errors/handleCastError';
 
 // global error handler  in production environment
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
-  config.env === 'development'
-    ? console.log('Global Error handler', error)
-    : "";
 
   let statusCode = 500;
   let message = 'some thing went wrong';
