@@ -14,8 +14,14 @@ const getSingleCowToDB = async(id:string):Promise<Icow | null> => {
     return result
 }
 
+const updateCowToDB = async(id:string, updateData:Partial<Icow>):Promise<Icow | null> => {
+    const result = await Cow.findByIdAndUpdate({_id: id}, updateData, {new: true}).populate('seller');
+    
+    return result
+}
+
 const deleteCowToDB = async(id:string):Promise<Icow | null> => {
-    const result = await Cow.findByIdAndDelete(id).populate('seller');
+    const result = await Cow.findByIdAndDelete(id);
 
     return result
 }
@@ -25,6 +31,6 @@ const deleteCowToDB = async(id:string):Promise<Icow | null> => {
 export const CowServices = {
     createCowToDB,
     getSingleCowToDB,
-
+    updateCowToDB,
     deleteCowToDB
 }

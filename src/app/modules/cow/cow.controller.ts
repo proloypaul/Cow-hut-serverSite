@@ -33,6 +33,21 @@ const getSingleCow = catchAsync(
     }
 )
 
+const updateCow = catchAsync(
+    async(req: Request, res: Response) => {
+        const id = req.params.id;
+        const updatedData = req.body;
+        const result = await CowServices.updateCowToDB(id, updatedData);
+
+        sendResponse<Icow>(res, {
+            statusCode: StatusCodes.OK,
+            success: true,
+            message: 'Get single cow successfully',
+            data: result
+        });
+    }
+)
+
 const deleteCow = catchAsync(
     async(req: Request, res: Response) => {
         const id = req.params.id;
@@ -51,5 +66,6 @@ const deleteCow = catchAsync(
 export const CowControllers = {
     createCow,
     getSingleCow,
+    updateCow,
     deleteCow
 }
