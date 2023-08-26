@@ -5,10 +5,10 @@ import { cowValidataion } from './cow.validation';
 
 const router = express.Router();
 
-router.post('/create-cow', validateRequest(cowValidataion.createCowZodSchema), CowControllers.createCow);
-router.get('/getSingle-cow/:id', CowControllers.getSingleCow);
-router.patch('/update-cow/:id', validateRequest(cowValidataion.updateCowZodSchema), CowControllers.updateCow)
-router.delete('/delete-cow/:id', CowControllers.deleteCow);
-router.get("/get-allCow", CowControllers.getAllCow);
+router.post('/', validateRequest(cowValidataion.createCowZodSchema), CowControllers.createCow);
+router.get('/:id', CowControllers.getSingleCow);
+router.patch('/:id', validateRequest(cowValidataion.updateCowZodSchema), CowControllers.updateCow)
+router.delete('/:id', CowControllers.deleteCow);
+router.get("/", CowControllers.getAllCow);
 
 export const cowRouters = router;

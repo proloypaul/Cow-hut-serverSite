@@ -1,17 +1,22 @@
 import express from 'express';
 import { userRouters } from '../modules/user/user.router';
 import { cowRouters } from '../modules/cow/cow.router';
+import { authRouters } from '../modules/auth/auth.router';
 
 const router = express.Router();
 
 const moduleRoutes = [
   {
-    path: '/user',
+    path: '/users',
     route: userRouters,
   },
   {
-    path: '/cow',
+    path: '/cows',
     route: cowRouters,
+  },
+  {
+    path: '/auth',
+    route: authRouters,
   },
 
 ];
