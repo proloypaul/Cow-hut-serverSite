@@ -61,7 +61,7 @@ const updateCow = catchAsync(
         sendResponse<Icow>(res, {
             statusCode: StatusCodes.OK,
             success: true,
-            message: 'Get single cow successfully',
+            message: 'Update Cow successfully',
             data: result
         });
     }
