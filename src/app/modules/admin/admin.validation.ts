@@ -15,12 +15,14 @@ export const createAdminZodSchema = z.object({
             firstName: z.string({
                 required_error: 'first name is required'
             }),
-            lastName: z.string({
-                required_error: 'last name is required'
-            })
+            lastName: z.string({}).optional()
         }),
         address: z.string({
             required_error: 'address is required'
         }) 
     })
 })
+
+export const adminValidation = {
+    createAdminZodSchema
+}

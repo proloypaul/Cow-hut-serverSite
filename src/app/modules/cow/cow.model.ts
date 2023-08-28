@@ -4,7 +4,7 @@ import { breedEnums, categoryEnums, labelEnums, loacationEnums } from "./cow.con
 
 
 
-const cowSchema = new Schema<Icow>(
+const cowSchema = new Schema<Icow, cowModel>(
     {
         name: {type: String, required:true},
         age: {type: Number, required:true},

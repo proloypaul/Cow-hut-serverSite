@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { Iorder, orderModel } from "./order.interface";
 
-const orderSchema = new Schema<Iorder>({
+const orderSchema = new Schema<Iorder, orderModel>({
     cow: {
         type: Schema.Types.ObjectId,
         ref: 'Cow',

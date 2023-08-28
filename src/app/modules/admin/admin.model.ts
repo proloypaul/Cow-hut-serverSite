@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { Iadmin, adminModel } from "./admin.interface";
 
-const adminSchema = new Schema<Iadmin>({
+const adminSchema = new Schema<Iadmin, adminModel>({
     password: {
         type: String,
         required: true

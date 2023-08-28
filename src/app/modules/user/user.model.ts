@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
-import { Iuser, userModel } from "./user.interface";
+import { Iuser, UserModel} from "./user.interface";
 
 
-const userSchema = new Schema<Iuser>(
+const userSchema = new Schema<Iuser, UserModel>(
     {
-        phoneNumber: {type: Number, required: true},
+        phoneNumber: {type: Number, required: true, unique: true},
         role: {type: String, required: true, enum: ['seller', 'buyer']  },
         password: {type: String, required: true},
         name: {
@@ -23,7 +23,17 @@ const userSchema = new Schema<Iuser>(
     }
   );
 
-export const User = model<Iuser, userModel>(
+// using static method create two method isUserHere and isPasswordMatch
+userSchema.statics.isUserHere = async function(
+  phoneNumber:number
+): Promise<Pick<Iuser, 'phoneNumber' | 'role' | 'password'> | null>{
+  const user = await User.findOne({phoneNumber}, {id:1, password:1, role:1})
+  
+  return user 
+}
+
+
+export const User = model<Iuser, UserModel>(
     'User',
     userSchema
   );

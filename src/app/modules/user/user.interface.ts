@@ -14,9 +14,15 @@ export type Iuser = {
 
 }
 
-export type userModel = Model<
-  Iuser,
-  Record<string, unknown>
->;
+
+export type UserModel = {
+  isUserHere(
+    phoneNumber: number
+  ): Promise<Pick<Iuser, 'phoneNumber' | 'role' | 'password'>>;
+  isPasswordMatched(
+    givenPassword: string,
+    savePassword: string
+  ): Promise<boolean>;
+} & Model<Iuser>;
 
 
