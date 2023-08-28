@@ -33,7 +33,7 @@ const adminSchema = new Schema<Iadmin>({
 }
 )
 
-const Admin = model<Iadmin, adminModel>(
+export const Admin = model<Iadmin, adminModel>(
     'Admin',
     adminSchema
 )
