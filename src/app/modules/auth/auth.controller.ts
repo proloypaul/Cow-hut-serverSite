@@ -16,8 +16,8 @@ const loginUser = catchAsync(
         // set refreshToken to our cookies
         const cookieOptions = {
             secure: config.env === 'production',
-            httpOnly: true
-        };
+            httpOnly: true,
+          };
         res.cookie('refreshToken', refreshToken, cookieOptions)
 
         sendResponse<IloginUserResponse>(res, {
@@ -39,7 +39,7 @@ const createRefreshToken = catchAsync(
         sendResponse<IloginUserResponse>(res, {
             statusCode: StatusCodes.OK,
             success: true,
-            message: 'Login user successfully',
+            message: 'New access token create succefully',
             data: result
         });
     }

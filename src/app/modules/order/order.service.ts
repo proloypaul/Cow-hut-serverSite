@@ -58,12 +58,21 @@ const createOrderToDB = async(orderData:Iorder): Promise<Iorder> => {
 }
 
 const getAllOrderToDB = async():Promise<Iorder[] | null> => {
-    const result = await Order.find({}).populate('cow').populate('buyer')
+    const result = await Order.find({}).populate({path: 'cow', populate: [{path: 'seller'}]}).populate('buyer')
 
     return result
 }
 
+const getSingleOrderToDB = async(payload: string):Promise<Iorder|null> => {
+
+    const result = await Order.findById(payload).populate({path: 'cow', populate: [{path: 'seller'}]}).populate('buyer')
+
+    return result
+}
+
+
 export const orderService = {
     createOrderToDB,
-    getAllOrderToDB
+    getAllOrderToDB,
+    getSingleOrderToDB
 }

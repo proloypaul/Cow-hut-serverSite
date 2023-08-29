@@ -6,6 +6,7 @@ import { orderController } from './order.controller';
 const router = express.Router();
 
 router.post('/', validateRequest(orderValidation.createOrderZodSchema), orderController.createOrder);
+router.get('/:id', orderController.getSingleOrder)
 router.get('/', orderController.getAllOrder);
 
 export const orderRouters = router;
