@@ -1,5 +1,7 @@
 import { Schema, model } from "mongoose";
 import { Iuser, UserModel} from "./user.interface";
+import bcrypt from 'bcrypt';
+import config from "../../../config";
 
 
 const userSchema = new Schema<Iuser, UserModel>(
@@ -23,6 +25,18 @@ const userSchema = new Schema<Iuser, UserModel>(
     }
   );
 
+
+// hashing user password
+userSchema.pre('save', async function(next){
+  const user = this;
+  user.password = await bcrypt.hash(
+    user.password, 
+    Number(config.bcrypt_salt_rounds)
+  )
+
+  next()
+})
+
 // using static method create two method isUserHere and isPasswordMatch
 userSchema.statics.isUserHere = async function(
   phoneNumber:number
@@ -35,11 +49,8 @@ userSchema.statics.isUserHere = async function(
 userSchema.statics.isPasswordMatched = async function(
   givenPassword: string,
   savePassword: string
-):Promise<boolean | undefined>{
-  let isMatch;
-  if(givenPassword === savePassword){
-    isMatch = true;
-  }
+):Promise<boolean>{
+  const isMatch = await bcrypt.compare(givenPassword, savePassword);
   return isMatch
 }
 
