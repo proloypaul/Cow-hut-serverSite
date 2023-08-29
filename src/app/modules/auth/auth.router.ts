@@ -9,6 +9,7 @@ import { AuthControllers } from './auth.controller';
 const router = express.Router();
 
 router.post('/signup', validateRequest(userValidation.createUserZodSchema), UserControllers.createUser);
-router.post('/login', validateRequest(authValidation.createLoginZodSchema), AuthControllers.loginUser)
+router.post('/login', validateRequest(authValidation.createLoginZodSchema), AuthControllers.loginUser);
+router.post('/refresh-token', validateRequest(authValidation.refreshTokenZodSchema), AuthControllers.createRefreshToken);
 
 export const authRouters = router;

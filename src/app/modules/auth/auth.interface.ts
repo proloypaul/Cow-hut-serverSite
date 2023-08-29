@@ -1,6 +1,6 @@
 
 export type ILoginUser = {
-    phoneNumber: string,
+    phoneNumber: number,
     password: string
 }
 

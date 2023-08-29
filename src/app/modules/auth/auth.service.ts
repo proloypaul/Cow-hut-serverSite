@@ -9,8 +9,7 @@ import { Secret } from "jsonwebtoken";
 
 const loginUserToDB = async(payload: ILoginUser):Promise<IloginUserResponse> => {
     const {phoneNumber, password} = payload;
-    const phoneStringToNum = parseInt(phoneNumber);
-    const isUserExist = await User.isUserHere(phoneStringToNum);
+    const isUserExist = await User.isUserHere(phoneNumber);
 
     if(!isUserExist){
         throw new ApiError(StatusCodes.NOT_FOUND, 'User does not exist');
@@ -40,7 +39,34 @@ const loginUserToDB = async(payload: ILoginUser):Promise<IloginUserResponse> => 
     }
 }
 
+const createNewAccessToken = async(token: string): Promise<IloginUserResponse> => {
+    let verifyToken = null;
+    try{
+        verifyToken = jwtHelpers.verifyToken(token, config.jwt.refresh_secrect as Secret);
+    }catch(error){
+        throw new ApiError(StatusCodes.FORBIDDEN, 'Invalid refresh token');
+    }
+
+    const {phone} = verifyToken;
+    const isUserExist = await User.isUserHere(phone);
+
+    if(!isUserExist){
+        throw new ApiError(StatusCodes.NOT_FOUND, 'User does not exist');
+    }
+
+    const {id, phoneNumber, role} = isUserExist;
+    const newAccessToken = jwtHelpers.createToken(
+        {id, phoneNumber, role},
+        config.jwt.secret as Secret,
+        config.jwt.expires_in as string
+    )
+
+    return {
+        accessToken: newAccessToken
+    }
+}
 
 export const AuthServices = {
-    loginUserToDB
+    loginUserToDB,
+    createNewAccessToken
 } 
