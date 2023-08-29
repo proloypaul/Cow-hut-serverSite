@@ -1,4 +1,4 @@
-import { StatusCodes } from "http-status-codes";
+import { PARTIAL_CONTENT, StatusCodes } from "http-status-codes";
 import ApiError from "../../errors/ApiError";
 import { Cow } from "../cow/cow.model";
 import { User } from "../user/user.model";
@@ -26,9 +26,10 @@ const createOrderToDB = async(orderData:Iorder): Promise<Iorder> => {
             "label": "sold out"
         }
 
+        
         // collect seller id from cowData into populate seller
         const sellerId: string = cowData?.seller?.id as string;
-        const incomeData: string = cowData?.seller?.income as string;
+        const incomeData: string = cowData?.seller?.income as string ;
         // seller present money and after selling cow money will be add to her income 
         const afterSellingCowIncome = parseInt(incomeData as string) + (cowData?.price as number)
         const sellerUpdateData = {

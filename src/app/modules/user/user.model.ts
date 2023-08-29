@@ -26,10 +26,21 @@ const userSchema = new Schema<Iuser, UserModel>(
 // using static method create two method isUserHere and isPasswordMatch
 userSchema.statics.isUserHere = async function(
   phoneNumber:number
-): Promise<Pick<Iuser, 'phoneNumber' | 'role' | 'password'> | null>{
+): Promise<Pick<Iuser, 'phoneNumber' | 'role' | 'password' | 'id'> | null>{
   const user = await User.findOne({phoneNumber}, {id:1, password:1, role:1})
   
   return user 
+}
+
+userSchema.statics.isPasswordMatched = async function(
+  givenPassword: string,
+  savePassword: string
+):Promise<boolean | undefined>{
+  let isMatch;
+  if(givenPassword === savePassword){
+    isMatch = true;
+  }
+  return isMatch
 }
 
 

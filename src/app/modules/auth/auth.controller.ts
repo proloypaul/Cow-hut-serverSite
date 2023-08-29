@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
 import { StatusCodes } from "http-status-codes";
-import { ILoginUser } from "./auth.interface";
+import { IloginUserResponse } from "./auth.interface";
 import { AuthServices } from "./auth.service";
 
 const loginUser = catchAsync(
@@ -10,10 +10,10 @@ const loginUser = catchAsync(
         const {...loginData} = req.body;
         const result = await AuthServices.loginUserToDB(loginData);
 
-        sendResponse<ILoginUser>(res, {
+        sendResponse<IloginUserResponse>(res, {
             statusCode: StatusCodes.OK,
             success: true,
-            message: 'Create cow successfully',
+            message: 'Login user successfully',
             data: result
         });
     }

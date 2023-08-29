@@ -1,6 +1,7 @@
 import { Model } from "mongoose";
 
 export type Iuser = {
+    id?:string
     phoneNumber: number,
     role: 'seller' | 'buyer',
     password: string,
@@ -8,17 +9,16 @@ export type Iuser = {
         firstName: string,
         lastName: string,
     },
-    address: string,
+    address: string
     budget: string,
     income: string,
-
 }
 
 
 export type UserModel = {
   isUserHere(
     phoneNumber: number
-  ): Promise<Pick<Iuser, 'phoneNumber' | 'role' | 'password'>>;
+  ): Promise<Pick<Iuser, 'phoneNumber' | 'role' | 'password' | 'id'>>;
   isPasswordMatched(
     givenPassword: string,
     savePassword: string
