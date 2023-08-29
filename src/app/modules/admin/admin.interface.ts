@@ -11,4 +11,18 @@ export type Iadmin = {
     address: string
 }
 
-export type adminModel = Model<Iadmin, Record<string, unknown>> 
+export type IadminLogin = {
+    phoneNumber: string,
+    password: string
+}
+
+export type adminModel = {
+    isAdminHere(
+        phoneNumber: string
+      ): Promise<Pick<Iadmin, 'password' | 'role' | 'phoneNumber'>>;
+    isPasswordMatched(
+    givenPassword: string,
+    savePassword: string
+    ): Promise<boolean>;
+} & Model<Iadmin> 
+

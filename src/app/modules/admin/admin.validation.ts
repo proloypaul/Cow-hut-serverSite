@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createAdminZodSchema = z.object({
+const createAdminZodSchema = z.object({
     body: z.object({
         phoneNumber: z.string({
             required_error: 'phone number is required'
@@ -23,6 +23,19 @@ export const createAdminZodSchema = z.object({
     })
 })
 
+const adminLoginZodSchema = z.object({
+    body: z.object({
+        phoneNumber: z.string({
+            required_error: 'phone number is required'
+        }),
+        password: z.string({
+            required_error: 'password is required'
+        })
+    })
+})
+
+
 export const adminValidation = {
-    createAdminZodSchema
+    createAdminZodSchema,
+    adminLoginZodSchema
 }
