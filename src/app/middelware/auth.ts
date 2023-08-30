@@ -18,16 +18,12 @@ async (req: Request, res: Response, next: NextFunction) => {
 
         //verify user token
         let verifiedUser = null;
-        try{
-            verifiedUser = jwtHelpers.verifyToken(
-                token,
-                config.jwt.secret as Secret
-            );
+        verifiedUser = jwtHelpers.verifyToken(
+            token,
+            config.jwt.secret as Secret
+        );
 
-        }catch(error){
-            throw new ApiError(StatusCodes.BAD_REQUEST, 'Invalid refreshToken');
-        }
-        // req.user = verifiedUser; // role, id and phoneNumber
+        req.user = verifiedUser; // add user into Express Request using index.d.ts file
 
         // check user role is have in the token
         if(userRequiredRoles.length && !userRequiredRoles.includes(verifiedUser.role)){

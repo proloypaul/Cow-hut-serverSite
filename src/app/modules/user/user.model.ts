@@ -14,8 +14,8 @@ const userSchema = new Schema<Iuser, UserModel>(
             lastName: {type: String, required:true}
         },
         address: {type: String, required:true},
-        budget: {type: String, required:true},
-        income: {type: String, required:true}
+        budget: {type: String, required:true, default: '0'},
+        income: {type: String, required:true, default: '0'}
     },
     {
       timestamps: true,

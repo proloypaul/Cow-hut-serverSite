@@ -80,10 +80,29 @@ const deleteUserData = catchAsync(
     }
 )
 
+// get update my profile 
+const getMyProfile = catchAsync(
+    async (req: Request, res: Response) => {
+        const token:string = req.headers.authorization as string;
+
+        const result = await UserServices.getMyProfileToDB(token);
+
+        // const {role, ...displayData} = result 
+        sendResponse<Partial<Iuser>>(res, {
+            statusCode: StatusCodes.OK,
+            success: true,
+            message: 'my profile data get successfully',
+            data: result
+        });
+    }
+)
+
+
 export const  UserControllers = {
     createUser,
     getAllUser,
     getSingleUser,
     updateUser,
-    deleteUserData
+    deleteUserData,
+    getMyProfile
 }
