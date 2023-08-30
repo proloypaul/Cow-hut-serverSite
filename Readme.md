@@ -2,6 +2,9 @@
   <h2>Application Routes:</h3>
 </div>
 
+### Server Deploy Live link : https://l2a3-cow-hut-backend-assignment-proloypaul.vercel.app/
+ 
+
 ### Auth (User)
 
 - https://l2a3-cow-hut-backend-assignment-proloypaul.vercel.app/api/v1/auth/login (POST)
