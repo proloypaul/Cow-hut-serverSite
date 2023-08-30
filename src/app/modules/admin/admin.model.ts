@@ -36,7 +36,7 @@ const adminSchema = new Schema<Iadmin, adminModel>({
 )
 
 // using static method create two method isAdminHere and isPasswordMatch
-adminSchema.statics.isUserHere = async function(
+adminSchema.statics.isAdminHere = async function(
     phoneNumber:string
   ): Promise<Pick<Iadmin, 'password' | 'role' | 'phoneNumber'> | null>{
     const admin = await Admin.findOne({phoneNumber}, {phoneNumber:1, password:1, role:1})

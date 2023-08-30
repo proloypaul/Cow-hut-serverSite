@@ -4,11 +4,13 @@ import { userValidation } from '../user/user.validation';
 import { UserControllers } from '../user/user.controller';
 import { authValidation } from './auth.validation';
 import { AuthControllers } from './auth.controller';
+import auth from '../../middelware/auth';
+import { ENUM_USER_ROLE } from '../../../enums/users';
 
 
 const router = express.Router();
 
-router.post('/signup', validateRequest(userValidation.createUserZodSchema), UserControllers.createUser);
+router.post('/signup', validateRequest(userValidation.createUserZodSchema), auth(ENUM_USER_ROLE.ADMIN), UserControllers.createUser);
 router.post('/login', validateRequest(authValidation.createLoginZodSchema), AuthControllers.loginUser);
 router.post('/refresh-token', validateRequest(authValidation.refreshTokenZodSchema), AuthControllers.createRefreshToken);
 
