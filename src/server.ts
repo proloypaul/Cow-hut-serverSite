@@ -11,7 +11,7 @@ async function main() {
     console.log('Database connected successfully');
 
     app.listen(config.port, () => {
-      console.log(`University management server running port:  ${config.port}`);
+      console.log(`digital-cow-hut-server:  ${config.port}`);
     });
 
   } catch (err) {

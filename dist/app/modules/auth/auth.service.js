@@ -36,6 +36,8 @@ const loginUserToDB = (payload) => __awaiter(void 0, void 0, void 0, function* (
         refreshToken,
     };
 });
+
+
 const createNewAccessToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
     let verifyToken = null;
     try {
@@ -55,6 +57,8 @@ const createNewAccessToken = (token) => __awaiter(void 0, void 0, void 0, functi
         accessToken: newAccessToken
     };
 });
+
+
 exports.AuthServices = {
     loginUserToDB,
     createNewAccessToken
