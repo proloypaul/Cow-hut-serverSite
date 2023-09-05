@@ -28,3 +28,5 @@ export interface Seller {
 export interface CowData {
     seller: Seller | null;
   }
+
+// collect my assingment repository from another account 
